@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Karla:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Karla:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
@@ -146,6 +146,13 @@ function RootComponent() {
                 className="hidden sm:inline-flex text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
               >
                 Collection
+              </Link>
+              <Link
+                to="/ar"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                lang="ar"
+              >
+                العربية
               </Link>
               <CartDrawer />
             </nav>
