@@ -72,10 +72,11 @@ function ProductPage() {
   const variants = node.variants.edges;
   const selectedVariant =
     variants.find((v) => v.node.id === selectedVariantId)?.node || variants[0]?.node;
+  const compareAtPrice = selectedVariant?.compareAtPrice;
   const hasDiscount =
-    selectedVariant?.compareAtPrice &&
-    parseFloat(selectedVariant.compareAtPrice.amount) >
-      parseFloat(selectedVariant.price.amount);
+    !!compareAtPrice &&
+    !!selectedVariant &&
+    parseFloat(compareAtPrice.amount) > parseFloat(selectedVariant.price.amount);
 
   const handleAddToCart = async () => {
     if (!selectedVariant) return;
