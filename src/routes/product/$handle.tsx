@@ -160,7 +160,7 @@ function ProductPage() {
 
           <p className="mt-6 text-muted-foreground leading-relaxed">{node.description}</p>
 
-          {node.options.length > 0 && node.options[0].values.length > 1 && (
+          {node.options.length > 0 && (node.options[0]?.values.length ?? 0) > 1 && (
             <div className="mt-6 space-y-3">
               {node.options.map((option) => (
                 <div key={option.name}>
