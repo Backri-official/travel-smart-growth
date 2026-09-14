@@ -12,9 +12,11 @@ import {
 import { ShoppingBag, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
+import { useIsArabic } from "@/hooks/useLocale";
 
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isArabic = useIsArabic();
   const {
     items,
     isLoading,
