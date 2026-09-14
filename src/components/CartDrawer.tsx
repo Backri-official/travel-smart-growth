@@ -113,7 +113,10 @@ export const CartDrawer = () => {
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium truncate">{item.product.node.title}</h4>
                         <p className="text-sm text-muted-foreground">
-                          {item.selectedOptions.map((o) => o.value).join(" • ")}
+                          {item.selectedOptions
+                            .filter((o) => o.value !== "Default Title")
+                            .map((o) => o.value)
+                            .join(" • ")}
                         </p>
                         <p className="font-semibold">
                           {formatPrice(item.price.amount, item.price.currencyCode)}
