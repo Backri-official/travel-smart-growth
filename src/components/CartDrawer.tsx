@@ -32,6 +32,23 @@ export const CartDrawer = () => {
     0,
   );
 
+  const t = {
+    title: isArabic ? "حقيبتك" : "Your Bag",
+    empty: isArabic ? "حقيبتك فارغة" : "Your bag is empty",
+    count: isArabic
+      ? `${totalItems} قطعة في حقيبتك`
+      : `${totalItems} item${totalItems !== 1 ? "s" : ""} in your bag`,
+    emptyLong: isArabic
+      ? "حقيبتك فارغة — أضف قطعة أنيقة لرحلتك القادمة."
+      : "Your bag is empty — add something beautiful for your next trip.",
+    total: isArabic ? "الإجمالي" : "Total",
+    checkout: isArabic ? "إتمام الشراء بأمان" : "Secure Checkout",
+    openCart: isArabic ? "افتح حقيبة الشراء" : "Open shopping cart",
+    remove: isArabic ? "إزالة القطعة" : "Remove item",
+    dec: isArabic ? "تقليل الكمية" : "Decrease quantity",
+    inc: isArabic ? "زيادة الكمية" : "Increase quantity",
+  };
+
   useEffect(() => {
     if (isOpen) syncCart();
   }, [isOpen, syncCart]);
