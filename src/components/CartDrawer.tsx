@@ -12,9 +12,11 @@ import {
 import { ShoppingBag, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
+import { useIsArabic } from "@/hooks/useLocale";
 
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isArabic = useIsArabic();
   const {
     items,
     isLoading,
@@ -29,6 +31,23 @@ export const CartDrawer = () => {
     (sum, item) => sum + parseFloat(item.price.amount) * item.quantity,
     0,
   );
+
+  const t = {
+    title: isArabic ? "حقيبتك" : "Your Bag",
+    empty: isArabic ? "حقيبتك فارغة" : "Your bag is empty",
+    count: isArabic
+      ? `${totalItems} قطعة في حقيبتك`
+      : `${totalItems} item${totalItems !== 1 ? "s" : ""} in your bag`,
+    emptyLong: isArabic
+      ? "حقيبتك فارغة — أضف قطعة أنيقة لرحلتك القادمة."
+      : "Your bag is empty — add something beautiful for your next trip.",
+    total: isArabic ? "الإجمالي" : "Total",
+    checkout: isArabic ? "إتمام الشراء بأمان" : "Secure Checkout",
+    openCart: isArabic ? "افتح حقيبة الشراء" : "Open shopping cart",
+    remove: isArabic ? "إزالة القطعة" : "Remove item",
+    dec: isArabic ? "تقليل الكمية" : "Decrease quantity",
+    inc: isArabic ? "زيادة الكمية" : "Increase quantity",
+  };
 
   useEffect(() => {
     if (isOpen) syncCart();
@@ -49,7 +68,7 @@ export const CartDrawer = () => {
           variant="ghost"
           size="icon"
           className="relative"
-          aria-label="Open shopping cart"
+          aria-label={t.openCart}
         >
           <ShoppingBag className="h-5 w-5" />
           {totalItems > 0 && (
@@ -59,13 +78,11 @@ export const CartDrawer = () => {
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-lg flex flex-col h-full">
+      <SheetContent dir={isArabic ? "rtl" : "ltr"} className={`w-full sm:max-w-lg flex flex-col h-full ${isArabic ? "font-arabic" : ""}`}>
         <SheetHeader className="flex-shrink-0">
-          <SheetTitle className="font-display text-2xl">Your Bag</SheetTitle>
+          <SheetTitle className="font-display text-2xl">{t.title}</SheetTitle>
           <SheetDescription>
-            {totalItems === 0
-              ? "Your bag is empty"
-              : `${totalItems} item${totalItems !== 1 ? "s" : ""} in your bag`}
+            {totalItems === 0 ? t.empty : t.count}
           </SheetDescription>
         </SheetHeader>
         <div className="flex flex-col flex-1 pt-6 min-h-0">
@@ -74,7 +91,7 @@ export const CartDrawer = () => {
               <div className="text-center">
                 <ShoppingBag className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <p className="text-muted-foreground">
-                  Your bag is empty — add something beautiful for your next trip.
+                  {t.emptyLong}
                 </p>
               </div>
             </div>
@@ -96,7 +113,10 @@ export const CartDrawer = () => {
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium truncate">{item.product.node.title}</h4>
                         <p className="text-sm text-muted-foreground">
-                          {item.selectedOptions.map((o) => o.value).join(" • ")}
+                          {item.selectedOptions
+                            .filter((o) => o.value !== "Default Title")
+                            .map((o) => o.value)
+                            .join(" • ")}
                         </p>
                         <p className="font-semibold">
                           {formatPrice(item.price.amount, item.price.currencyCode)}
@@ -108,7 +128,7 @@ export const CartDrawer = () => {
                           size="icon"
                           className="h-6 w-6"
                           onClick={() => removeItem(item.variantId)}
-                          aria-label="Remove item"
+                          aria-label={t.remove}
                         >
                           <Trash2 className="h-3 w-3" />
                         </Button>
@@ -118,7 +138,7 @@ export const CartDrawer = () => {
                             size="icon"
                             className="h-6 w-6"
                             onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
-                            aria-label="Decrease quantity"
+                            aria-label={t.dec}
                           >
                             <Minus className="h-3 w-3" />
                           </Button>
@@ -128,7 +148,7 @@ export const CartDrawer = () => {
                             size="icon"
                             className="h-6 w-6"
                             onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
-                            aria-label="Increase quantity"
+                            aria-label={t.inc}
                           >
                             <Plus className="h-3 w-3" />
                           </Button>
@@ -140,7 +160,7 @@ export const CartDrawer = () => {
               </div>
               <div className="flex-shrink-0 space-y-4 pt-4 border-t bg-background">
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold">Total</span>
+                  <span className="text-lg font-semibold">{t.total}</span>
                   <span className="text-xl font-bold">
                     {formatPrice(
                       totalPrice.toFixed(2),
@@ -159,7 +179,7 @@ export const CartDrawer = () => {
                   ) : (
                     <>
                       <ExternalLink className="w-4 h-4 mr-2" />
-                      Secure Checkout
+                      {t.checkout}
                     </>
                   )}
                 </Button>

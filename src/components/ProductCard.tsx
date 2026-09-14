@@ -4,11 +4,21 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useCartStore } from "@/stores/cartStore";
+import { useIsArabic } from "@/hooks/useLocale";
 import { formatPrice, type ShopifyProduct } from "@/lib/shopify";
 
 export function ProductCard({ product }: { product: ShopifyProduct }) {
   const addItem = useCartStore((state) => state.addItem);
   const isLoading = useCartStore((state) => state.isLoading);
+  const isArabic = useIsArabic();
+  const t = {
+    add: isArabic ? "أضف" : "Add",
+    offer: isArabic ? "عرض الإطلاق" : "Launch Offer",
+    added: (title: string) =>
+      isArabic ? `تمت إضافة ${title} إلى حقيبتك` : `${title} added to your bag`,
+    ariaAdd: (title: string) =>
+      isArabic ? `أضف ${title} إلى الحقيبة` : `Add ${title} to cart`,
+  };
   const { node } = product;
   const image = node.images.edges[0]?.node;
   const variant = node.variants.edges[0]?.node;
@@ -28,7 +38,7 @@ export function ProductCard({ product }: { product: ShopifyProduct }) {
       quantity: 1,
       selectedOptions: variant.selectedOptions || [],
     });
-    toast.success(`${node.title} added to your bag`);
+    toast.success(t.added(node.title));
   };
 
   return (
@@ -51,21 +61,21 @@ export function ProductCard({ product }: { product: ShopifyProduct }) {
           )}
           {hasDiscount && (
             <Badge className="absolute top-3 left-3 bg-accent text-accent-foreground">
-              Launch Offer
+              {t.offer}
             </Badge>
           )}
           <Button
             size="sm"
             onClick={handleAddToCart}
             disabled={isLoading || !variant || !variant.availableForSale}
-            className="absolute bottom-3 right-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0"
-            aria-label={`Add ${node.title} to cart`}
+            className="absolute bottom-3 right-3 transition-all duration-300 sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 sm:focus-visible:opacity-100 sm:focus-visible:translate-y-0"
+            aria-label={t.ariaAdd(node.title)}
           >
             {isLoading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
               <>
-                <Plus className="h-4 w-4 mr-1" /> Add
+                <Plus className="h-4 w-4 mr-1" /> {t.add}
               </>
             )}
           </Button>
