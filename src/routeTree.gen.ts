@@ -10,17 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ArRouteImport } from './routes/ar'
+import { Route as ArIndexRouteImport } from './routes/ar.index'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as ProductHandleRouteImport } from './routes/product/$handle'
+import { Route as ArJournalIndexRouteImport } from './routes/ar.journal.index'
+import { Route as ArJournalSlugRouteImport } from './routes/ar.journal.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArRoute = ArRouteImport.update({
-  id: '/ar',
-  path: '/ar',
+const ArIndexRoute = ArIndexRouteImport.update({
+  id: '/ar/',
+  path: '/ar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/journal/',
+  path: '/journal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/journal/$slug',
+  path: '/journal/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
@@ -28,35 +42,83 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArJournalIndexRoute = ArJournalIndexRouteImport.update({
+  id: '/ar/journal/',
+  path: '/ar/journal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArJournalSlugRoute = ArJournalSlugRouteImport.update({
+  id: '/ar/journal/$slug',
+  path: '/ar/journal/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ar': typeof ArRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/ar/': typeof ArIndexRoute
+  '/journal/': typeof JournalIndexRoute
+  '/ar/journal/$slug': typeof ArJournalSlugRoute
+  '/ar/journal/': typeof ArJournalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ar': typeof ArRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/ar': typeof ArIndexRoute
+  '/journal': typeof JournalIndexRoute
+  '/ar/journal/$slug': typeof ArJournalSlugRoute
+  '/ar/journal': typeof ArJournalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/ar': typeof ArRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/ar/': typeof ArIndexRoute
+  '/journal/': typeof JournalIndexRoute
+  '/ar/journal/$slug': typeof ArJournalSlugRoute
+  '/ar/journal/': typeof ArJournalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ar' | '/product/$handle'
+  fullPaths:
+    | '/'
+    | '/journal/$slug'
+    | '/product/$handle'
+    | '/ar/'
+    | '/journal/'
+    | '/ar/journal/$slug'
+    | '/ar/journal/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ar' | '/product/$handle'
-  id: '__root__' | '/' | '/ar' | '/product/$handle'
+  to:
+    | '/'
+    | '/journal/$slug'
+    | '/product/$handle'
+    | '/ar'
+    | '/journal'
+    | '/ar/journal/$slug'
+    | '/ar/journal'
+  id:
+    | '__root__'
+    | '/'
+    | '/journal/$slug'
+    | '/product/$handle'
+    | '/ar/'
+    | '/journal/'
+    | '/ar/journal/$slug'
+    | '/ar/journal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArRoute: typeof ArRoute
+  JournalSlugRoute: typeof JournalSlugRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  ArIndexRoute: typeof ArIndexRoute
+  JournalIndexRoute: typeof JournalIndexRoute
+  ArJournalSlugRoute: typeof ArJournalSlugRoute
+  ArJournalIndexRoute: typeof ArJournalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +130,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ar': {
-      id: '/ar'
+    '/ar/': {
+      id: '/ar/'
       path: '/ar'
-      fullPath: '/ar'
-      preLoaderRoute: typeof ArRouteImport
+      fullPath: '/ar/'
+      preLoaderRoute: typeof ArIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal/': {
+      id: '/journal/'
+      path: '/journal'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/journal/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product/$handle': {
@@ -82,13 +158,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ar/journal/': {
+      id: '/ar/journal/'
+      path: '/ar/journal'
+      fullPath: '/ar/journal/'
+      preLoaderRoute: typeof ArJournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ar/journal/$slug': {
+      id: '/ar/journal/$slug'
+      path: '/ar/journal/$slug'
+      fullPath: '/ar/journal/$slug'
+      preLoaderRoute: typeof ArJournalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArRoute: ArRoute,
+  JournalSlugRoute: JournalSlugRoute,
   ProductHandleRoute: ProductHandleRoute,
+  ArIndexRoute: ArIndexRoute,
+  JournalIndexRoute: JournalIndexRoute,
+  ArJournalSlugRoute: ArJournalSlugRoute,
+  ArJournalIndexRoute: ArJournalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
