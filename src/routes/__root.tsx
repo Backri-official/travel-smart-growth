@@ -139,18 +139,22 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 h-16">
-            <Link to="/" className="flex items-center gap-2" aria-label="Backri home">
+          <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-center px-4 sm:justify-between sm:px-6">
+            <Link
+              to="/"
+              className="flex flex-col items-center gap-0.5 sm:flex-row sm:gap-2"
+              aria-label="Backri home"
+            >
               <img
                 src={logoAsset.url}
                 alt="Backri logo"
-                className="h-9 w-auto"
+                className="h-8 w-auto sm:h-9"
                 width={36}
                 height={36}
               />
-              <span className="font-display text-2xl tracking-wide">Backri</span>
+              <span className="font-display text-xl tracking-wide sm:text-2xl">Backri</span>
             </Link>
-            <nav className="flex items-center gap-2">
+            <nav className="absolute end-4 top-1/2 flex -translate-y-1/2 items-center gap-2 sm:static sm:translate-y-0">
               {!isArabic && (
                 <Link
                   to="/"
