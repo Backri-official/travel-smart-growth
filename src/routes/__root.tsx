@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
+import logoAsset from "@/assets/backri-logo.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartDrawer } from "../components/CartDrawer";
 import { useCartSync } from "../hooks/useCartSync";
@@ -99,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -139,8 +140,15 @@ function RootComponent() {
       <div className="flex min-h-screen flex-col">
         <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 h-16">
-            <Link to="/" className="font-display text-2xl tracking-wide">
-              Backri
+            <Link to="/" className="flex items-center gap-2" aria-label="Backri home">
+              <img
+                src={logoAsset.url}
+                alt="Backri logo"
+                className="h-9 w-auto"
+                width={36}
+                height={36}
+              />
+              <span className="font-display text-2xl tracking-wide">Backri</span>
             </Link>
             <nav className="flex items-center gap-2">
               {!isArabic && (
