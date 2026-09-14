@@ -174,7 +174,7 @@ function RootComponent() {
               />
               <span className="font-display text-lg tracking-wide sm:text-2xl">Backri</span>
             </Link>
-            <nav className="flex shrink-0 items-center justify-end gap-2">
+            <nav className="flex shrink-0 items-center justify-end gap-1 sm:gap-2">
               {!isArabic && (
                 <Link
                   to="/"
@@ -185,37 +185,38 @@ function RootComponent() {
                 </Link>
               )}
               {isArabic ? (
-                <>
-                  <Link
-                    to="/ar/journal"
-                    lang="ar"
-                    className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
-                  >
-                    المجلة
-                  </Link>
-                  <Link
-                    to="/"
-                    className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
-                  >
-                    EN
-                  </Link>
-                </>
+                <Link
+                  to="/ar/journal"
+                  lang="ar"
+                  className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+                >
+                  المجلة
+                </Link>
               ) : (
-                <>
                 <Link
                   to="/journal"
                   className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                 >
                   Journal
                 </Link>
+              )}
+              {isArabic ? (
+                <Link
+                  to="/"
+                  className="px-2 py-2 text-sm font-medium text-foreground transition-colors hover:text-primary sm:px-3"
+                  aria-label="Switch to English"
+                >
+                  EN
+                </Link>
+              ) : (
                 <Link
                   to="/ar"
-                  className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+                  className="px-2 py-2 text-sm font-medium text-foreground transition-colors hover:text-primary sm:px-3"
                   lang="ar"
+                  aria-label="التبديل إلى العربية"
                 >
-                  العربية
+                  AR
                 </Link>
-                </>
               )}
               <CartDrawer />
             </nav>
