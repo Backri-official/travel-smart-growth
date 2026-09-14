@@ -18,23 +18,56 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Backri — Premium Travel Accessories & Luggage | UAE" },
+      { title: "Passport Wallets & Travel Luggage in Dubai, UAE | Backri" },
       {
         name: "description",
         content:
-          "Backri crafts premium leather passport wallets, luggage, bags and travel organisers. Designed in the UAE, delivered across the GCC. Free UAE shipping over AED 500.",
+          "Shop premium leather passport wallets, passport covers, cabin luggage, travel bags and packing organisers in Dubai. Free UAE delivery over AED 500, shipping across the GCC.",
       },
-      { property: "og:title", content: "Backri — Premium Travel Accessories & Luggage" },
+      { name: "keywords", content: "passport wallet UAE, passport cover Dubai, travel wallet Dubai, luggage Dubai, cabin luggage UAE, travel bags GCC, packing cubes Dubai" },
+      { property: "og:title", content: "Passport Wallets & Travel Luggage in Dubai, UAE | Backri" },
       {
         property: "og:description",
         content:
-          "Premium leather passport wallets, luggage and travel organisers. Designed in the UAE, delivered across the GCC.",
+          "Premium leather passport wallets, cabin luggage, travel bags and organisers. Free UAE delivery over AED 500, shipping across the GCC.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:locale", content: "en_AE" },
+      { property: "og:locale:alternate", content: "ar_AE" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "alternate", hrefLang: "en-AE", href: "/" },
+      { rel: "alternate", hrefLang: "ar-AE", href: "/ar" },
+      { rel: "alternate", hrefLang: "x-default", href: "/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "OnlineStore",
+          name: "Backri",
+          description:
+            "Premium leather passport wallets, cabin luggage, travel bags and packing organisers for travellers in the UAE and GCC.",
+          url: "/",
+          currenciesAccepted: "AED",
+          areaServed: [
+            { "@type": "Country", name: "United Arab Emirates" },
+            { "@type": "Country", name: "Saudi Arabia" },
+            { "@type": "Country", name: "Qatar" },
+            { "@type": "Country", name: "Kuwait" },
+            { "@type": "Country", name: "Bahrain" },
+            { "@type": "Country", name: "Oman" },
+          ],
+        }),
+      },
     ],
   }),
 });
+
 
 function Index() {
   const { data: products } = useSuspenseQuery(productsQueryOptions);
