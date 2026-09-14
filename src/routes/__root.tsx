@@ -130,6 +130,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const isArabic = location.pathname === "/ar";
   useCartSync();
 
   return (
@@ -141,20 +143,31 @@ function RootComponent() {
               Backri
             </Link>
             <nav className="flex items-center gap-2">
-              <Link
-                to="/"
-                hash="collection"
-                className="hidden sm:inline-flex text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
-              >
-                Collection
-              </Link>
-              <Link
-                to="/ar"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
-                lang="ar"
-              >
-                العربية
-              </Link>
+              {!isArabic && (
+                <Link
+                  to="/"
+                  hash="collection"
+                  className="hidden sm:inline-flex text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                >
+                  Collection
+                </Link>
+              )}
+              {isArabic ? (
+                <Link
+                  to="/"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                >
+                  EN
+                </Link>
+              ) : (
+                <Link
+                  to="/ar"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                  lang="ar"
+                >
+                  العربية
+                </Link>
+              )}
               <CartDrawer />
             </nav>
           </div>
