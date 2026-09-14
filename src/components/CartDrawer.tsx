@@ -54,7 +54,7 @@ export const CartDrawer = () => {
   }, [isOpen, syncCart]);
 
   const handleCheckout = () => {
-    const checkoutUrl = getCheckoutUrl();
+    const checkoutUrl = getCheckoutUrl(isArabic ? "ar" : "en");
     if (checkoutUrl) {
       window.open(checkoutUrl, "_blank");
       setIsOpen(false);
