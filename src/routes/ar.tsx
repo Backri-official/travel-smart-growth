@@ -95,15 +95,16 @@ function IndexAr() {
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-28 sm:py-40">
           <div className="max-w-xl">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent-foreground">
-              تصميم في الإمارات
+              تصميم في الإمارات — توصيل إلى دول الخليج
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold leading-tight mt-4">
-              سافر بأناقة. واصل بثقة.
+              محافظ جوازات وحقائب سفر فاخرة للمسافر الخليجي
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات للمسافر الخليجي العصري.
-              مصنوعة لترافقك لسنوات طويلة.
+              محافظ وأغطية جوازات جلدية، حقائب صعود للطائرة، شنط سفر ومنظمات ترتيب
+              للمسافرين في دبي وأبوظبي وجميع دول الخليج. مصنوعة لترافقك لسنوات طويلة.
             </p>
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#collection-ar"
