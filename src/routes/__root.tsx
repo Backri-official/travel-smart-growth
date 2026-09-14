@@ -131,7 +131,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
-  const isArabic = location.pathname === "/ar";
+  const isArabic = location.pathname === "/ar" || location.pathname.startsWith("/ar/");
   useCartSync();
 
   return (
@@ -153,13 +153,29 @@ function RootComponent() {
                 </Link>
               )}
               {isArabic ? (
+                <>
+                  <Link
+                    to="/ar/journal"
+                    lang="ar"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                  >
+                    المجلة
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                  >
+                    EN
+                  </Link>
+                </>
+              ) : (
+                <>
                 <Link
-                  to="/"
+                  to="/journal"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
                 >
-                  EN
+                  Journal
                 </Link>
-              ) : (
                 <Link
                   to="/ar"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
