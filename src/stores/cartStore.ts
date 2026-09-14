@@ -257,7 +257,10 @@ export const useCartStore = create<CartStore>()(
       },
 
       clearCart: () => set({ items: [], cartId: null, checkoutUrl: null }),
-      getCheckoutUrl: () => get().checkoutUrl,
+      getCheckoutUrl: (locale) => {
+        const url = get().checkoutUrl;
+        return url ? formatCheckoutUrl(url, locale) : null;
+      },
 
       syncCart: async () => {
         const { cartId, isSyncing, clearCart } = get();
