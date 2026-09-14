@@ -15,6 +15,7 @@ import appCss from "../styles.css?url";
 import logoAsset from "@/assets/backri-logo.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartDrawer } from "../components/CartDrawer";
+import { MobileMenu } from "../components/MobileMenu";
 import { useCartSync } from "../hooks/useCartSync";
 
 function NotFoundComponent() {
@@ -139,10 +140,13 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
-          <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-center px-4 sm:justify-between sm:px-6">
+          <div className="mx-auto grid h-16 max-w-6xl grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-center px-4 sm:flex sm:justify-between sm:px-6">
+            <div className="flex justify-start sm:hidden">
+              <MobileMenu />
+            </div>
             <Link
               to="/"
-              className="flex flex-col items-center gap-0.5 sm:flex-row sm:gap-2"
+              className="flex min-w-0 flex-col items-center gap-0.5 sm:flex-row sm:gap-2"
               aria-label="Backri home"
             >
               <img
@@ -154,12 +158,12 @@ function RootComponent() {
               />
               <span className="font-display text-xl tracking-wide sm:text-2xl">Backri</span>
             </Link>
-            <nav className="absolute end-4 top-1/2 flex -translate-y-1/2 items-center gap-2 sm:static sm:translate-y-0">
+            <nav className="flex shrink-0 items-center justify-end gap-2">
               {!isArabic && (
                 <Link
                   to="/"
                   hash="collection"
-                  className="hidden sm:inline-flex text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                  className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                 >
                   Collection
                 </Link>
@@ -169,13 +173,13 @@ function RootComponent() {
                   <Link
                     to="/ar/journal"
                     lang="ar"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                    className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                   >
                     المجلة
                   </Link>
                   <Link
                     to="/"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                    className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                   >
                     EN
                   </Link>
@@ -184,13 +188,13 @@ function RootComponent() {
                 <>
                 <Link
                   to="/journal"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                  className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                 >
                   Journal
                 </Link>
                 <Link
                   to="/ar"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+                  className="hidden px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                   lang="ar"
                 >
                   العربية
