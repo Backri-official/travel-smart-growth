@@ -44,7 +44,7 @@ const ORDERS_QUERY = `
 `;
 
 export const getShopifyOrders = createServerFn({ method: "POST" })
-  .inputValidator((data) =>
+  .validator((data) =>
     z.object({ passcode: z.string().min(1), limit: z.number().min(1).max(100).optional() }).parse(data),
   )
   .handler(async ({ data }): Promise<OrdersResult> => {
