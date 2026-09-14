@@ -13,7 +13,7 @@ const productsQueryOptions = queryOptions({
   },
 });
 
-export const Route = createFileRoute("/ar")({
+export const Route = createFileRoute("/ar/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions),
   component: IndexAr,
   head: () => ({
