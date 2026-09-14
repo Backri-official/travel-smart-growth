@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useCartStore } from "@/stores/cartStore";
+import { useIsArabic } from "@/hooks/useLocale";
 import { formatPrice, type ShopifyProduct } from "@/lib/shopify";
 
 export function ProductCard({ product }: { product: ShopifyProduct }) {
