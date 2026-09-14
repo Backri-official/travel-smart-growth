@@ -1,10 +1,9 @@
 import { toast } from "sonner";
 
 export const SHOPIFY_API_VERSION = "2025-07";
-export const SHOPIFY_STORE_PERMANENT_DOMAIN =
-  "growth-architect-ai-5pbvu-b9afnrnn.myshopify.com";
+export const SHOPIFY_STORE_PERMANENT_DOMAIN = "z9sfnq-ih.myshopify.com";
 export const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-export const SHOPIFY_STOREFRONT_TOKEN = "15be0dcf87dcc99e8c290d32d63c277f";
+export const SHOPIFY_STOREFRONT_TOKEN = "d9ceabbbbe7a47c89426e97e377e3557";
 
 export interface ShopifyProduct {
   node: {
