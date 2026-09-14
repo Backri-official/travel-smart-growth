@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ArRouteImport } from './routes/ar'
+import { Route as ArIndexRouteImport } from './routes/ar.index'
 import { Route as ProductHandleRouteImport } from './routes/product/$handle'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +18,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArRoute = ArRouteImport.update({
-  id: '/ar',
-  path: '/ar',
+const ArIndexRoute = ArIndexRouteImport.update({
+  id: '/ar/',
+  path: '/ar/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
@@ -31,32 +31,32 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ar': typeof ArRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/ar/': typeof ArIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ar': typeof ArRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/ar': typeof ArIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/ar': typeof ArRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/ar/': typeof ArIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ar' | '/product/$handle'
+  fullPaths: '/' | '/product/$handle' | '/ar/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ar' | '/product/$handle'
-  id: '__root__' | '/' | '/ar' | '/product/$handle'
+  to: '/' | '/product/$handle' | '/ar'
+  id: '__root__' | '/' | '/product/$handle' | '/ar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArRoute: typeof ArRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  ArIndexRoute: typeof ArIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +68,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ar': {
-      id: '/ar'
+    '/ar/': {
+      id: '/ar/'
       path: '/ar'
-      fullPath: '/ar'
-      preLoaderRoute: typeof ArRouteImport
+      fullPath: '/ar/'
+      preLoaderRoute: typeof ArIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product/$handle': {
@@ -87,8 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArRoute: ArRoute,
   ProductHandleRoute: ProductHandleRoute,
+  ArIndexRoute: ArIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
