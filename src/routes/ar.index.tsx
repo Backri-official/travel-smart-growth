@@ -3,13 +3,13 @@ import { arPosts } from "@/content/posts";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { Plane, ShieldCheck, Truck, Gift } from "lucide-react";
 import heroImage from "@/assets/hero.jpg";
-import { storefrontApiRequest, STOREFRONT_QUERY, type ShopifyProduct } from "@/lib/shopify";
+import { storefrontApiRequest, STOREFRONT_QUERY_AR, type ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "@/components/ProductCard";
 
 const productsQueryOptions = queryOptions({
-  queryKey: ["shopify-products"],
+  queryKey: ["shopify-products", "ar"],
   queryFn: async () => {
-    const data = await storefrontApiRequest(STOREFRONT_QUERY, { first: 20 });
+    const data = await storefrontApiRequest(STOREFRONT_QUERY_AR, { first: 20 });
     return (data?.data?.products?.edges || []) as ShopifyProduct[];
   },
 });
