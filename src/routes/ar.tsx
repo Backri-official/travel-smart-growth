@@ -189,6 +189,27 @@ function IndexAr() {
         </div>
       </section>
 
+      {/* التوصيل والمناطق */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+        <h2 className="text-3xl sm:text-4xl font-bold">
+          إكسسوارات سفر تُوصَّل إلى الإمارات ودول الخليج
+        </h2>
+        <div className="mt-6 grid gap-8 md:grid-cols-2 text-muted-foreground leading-relaxed">
+          <p>
+            اطلب محفظة جواز سفر أو غطاء جواز أو حقيبة صعود للطائرة أو شنطة سفر
+            ونوصلها إلى أي مكان في الإمارات: دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة،
+            الفجيرة وأم القيوين. التوصيل مجاني داخل الإمارات للطلبات فوق 500 درهم،
+            وخلال 2 إلى 4 أيام لبقية الطلبات.
+          </p>
+          <p>
+            كما نشحن إلى السعودية وقطر والكويت والبحرين وعُمان. جميع الأسعار بالدرهم
+            الإماراتي، وكل قطعة بمقاس المقصورة لرحلاتك من مطارات دبي وأبوظبي، وتصل في
+            علبة أنيقة جاهزة للإهداء مع ضمان حرفية لمدة سنتين.
+          </p>
+        </div>
+      </section>
+
+
       {/* التذييل */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start justify-between gap-8">
