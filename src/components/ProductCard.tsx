@@ -9,6 +9,15 @@ import { formatPrice, type ShopifyProduct } from "@/lib/shopify";
 export function ProductCard({ product }: { product: ShopifyProduct }) {
   const addItem = useCartStore((state) => state.addItem);
   const isLoading = useCartStore((state) => state.isLoading);
+  const isArabic = useIsArabic();
+  const t = {
+    add: isArabic ? "أضف" : "Add",
+    offer: isArabic ? "عرض الإطلاق" : "Launch Offer",
+    added: (title: string) =>
+      isArabic ? `تمت إضافة ${title} إلى حقيبتك` : `${title} added to your bag`,
+    ariaAdd: (title: string) =>
+      isArabic ? `أضف ${title} إلى الحقيبة` : `Add ${title} to cart`,
+  };
   const { node } = product;
   const image = node.images.edges[0]?.node;
   const variant = node.variants.edges[0]?.node;
