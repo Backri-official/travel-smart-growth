@@ -18,23 +18,62 @@ export const Route = createFileRoute("/ar")({
   component: IndexAr,
   head: () => ({
     meta: [
-      { title: "باكري — محافظ جوازات وحقائب سفر فاخرة | الإمارات" },
+      { title: "محفظة جواز سفر وحقائب سفر فاخرة في دبي والإمارات | باكري" },
       {
         name: "description",
         content:
-          "باكري تصنع محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات رحلات. تصميم إماراتي وتوصيل إلى دول الخليج. توصيل مجاني داخل الإمارات فوق 500 درهم.",
+          "تسوّق محافظ وأغطية جوازات جلدية، حقائب صعود للطائرة، شنط سفر ومنظمات ترتيب في دبي. توصيل مجاني داخل الإمارات فوق 500 درهم وشحن إلى دول الخليج.",
       },
-      { property: "og:title", content: "باكري — محافظ جوازات وحقائب سفر فاخرة" },
+      {
+        name: "keywords",
+        content:
+          "محفظة جواز سفر, غطاء جواز سفر, حقائب سفر دبي, شنط سفر الإمارات, حقيبة صعود للطائرة, منظم حقائب, إكسسوارات سفر الخليج",
+      },
+      { property: "og:title", content: "محفظة جواز سفر وحقائب سفر فاخرة في دبي والإمارات | باكري" },
       {
         property: "og:description",
         content:
-          "محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات رحلات. تصميم إماراتي وتوصيل إلى دول الخليج.",
+          "محافظ جوازات جلدية فاخرة، حقائب صعود، شنط سفر ومنظمات ترتيب. توصيل مجاني داخل الإمارات فوق 500 درهم وشحن إلى دول الخليج.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/ar" },
+      { property: "og:locale", content: "ar_AE" },
+      { property: "og:locale:alternate", content: "en_AE" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "/ar" },
+      { rel: "alternate", hrefLang: "ar-AE", href: "/ar" },
+      { rel: "alternate", hrefLang: "en-AE", href: "/" },
+      { rel: "alternate", hrefLang: "x-default", href: "/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "OnlineStore",
+          name: "باكري",
+          alternateName: "Backri",
+          inLanguage: "ar-AE",
+          description:
+            "محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات ترتيب للمسافرين في الإمارات ودول الخليج.",
+          url: "/ar",
+          currenciesAccepted: "AED",
+          areaServed: [
+            { "@type": "Country", name: "الإمارات العربية المتحدة" },
+            { "@type": "Country", name: "السعودية" },
+            { "@type": "Country", name: "قطر" },
+            { "@type": "Country", name: "الكويت" },
+            { "@type": "Country", name: "البحرين" },
+            { "@type": "Country", name: "عمان" },
+          ],
+        }),
+      },
     ],
   }),
 });
+
 
 function IndexAr() {
   const { data: products } = useSuspenseQuery(productsQueryOptions);
