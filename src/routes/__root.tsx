@@ -140,23 +140,39 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
-          <div className="mx-auto grid h-16 max-w-6xl grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-center px-4 sm:flex sm:justify-between sm:px-6">
-            <div className="flex justify-start sm:hidden">
+          <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+            <div className="flex items-center gap-1">
               <MobileMenu />
+              {isArabic ? (
+                <Link
+                  to="/ar/journal"
+                  lang="ar"
+                  className="px-2 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:hidden"
+                >
+                  المجلة
+                </Link>
+              ) : (
+                <Link
+                  to="/journal"
+                  className="px-2 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:hidden"
+                >
+                  Journal
+                </Link>
+              )}
             </div>
             <Link
               to="/"
-              className="flex min-w-0 flex-col items-center gap-0.5 sm:flex-row sm:gap-2"
+              className="absolute left-1/2 top-1/2 flex min-w-0 -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0.5 sm:static sm:translate-x-0 sm:translate-y-0 sm:flex-row sm:gap-2"
               aria-label="Backri home"
             >
               <img
                 src={logoAsset.url}
                 alt="Backri logo"
-                className="h-8 w-auto sm:h-9"
+                className="h-7 w-auto sm:h-9"
                 width={36}
                 height={36}
               />
-              <span className="font-display text-xl tracking-wide sm:text-2xl">Backri</span>
+              <span className="font-display text-lg tracking-wide sm:text-2xl">Backri</span>
             </Link>
             <nav className="flex shrink-0 items-center justify-end gap-2">
               {!isArabic && (
