@@ -183,6 +183,7 @@ function RootComponent() {
                 >
                   العربية
                 </Link>
+                </>
               )}
               <CartDrawer />
             </nav>
