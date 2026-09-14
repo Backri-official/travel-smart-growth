@@ -18,23 +18,62 @@ export const Route = createFileRoute("/ar")({
   component: IndexAr,
   head: () => ({
     meta: [
-      { title: "باكري — محافظ جوازات وحقائب سفر فاخرة | الإمارات" },
+      { title: "محفظة جواز سفر وحقائب سفر فاخرة في دبي والإمارات | باكري" },
       {
         name: "description",
         content:
-          "باكري تصنع محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات رحلات. تصميم إماراتي وتوصيل إلى دول الخليج. توصيل مجاني داخل الإمارات فوق 500 درهم.",
+          "تسوّق محافظ وأغطية جوازات جلدية، حقائب صعود للطائرة، شنط سفر ومنظمات ترتيب في دبي. توصيل مجاني داخل الإمارات فوق 500 درهم وشحن إلى دول الخليج.",
       },
-      { property: "og:title", content: "باكري — محافظ جوازات وحقائب سفر فاخرة" },
+      {
+        name: "keywords",
+        content:
+          "محفظة جواز سفر, غطاء جواز سفر, حقائب سفر دبي, شنط سفر الإمارات, حقيبة صعود للطائرة, منظم حقائب, إكسسوارات سفر الخليج",
+      },
+      { property: "og:title", content: "محفظة جواز سفر وحقائب سفر فاخرة في دبي والإمارات | باكري" },
       {
         property: "og:description",
         content:
-          "محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات رحلات. تصميم إماراتي وتوصيل إلى دول الخليج.",
+          "محافظ جوازات جلدية فاخرة، حقائب صعود، شنط سفر ومنظمات ترتيب. توصيل مجاني داخل الإمارات فوق 500 درهم وشحن إلى دول الخليج.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/ar" },
+      { property: "og:locale", content: "ar_AE" },
+      { property: "og:locale:alternate", content: "en_AE" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "/ar" },
+      { rel: "alternate", hrefLang: "ar-AE", href: "/ar" },
+      { rel: "alternate", hrefLang: "en-AE", href: "/" },
+      { rel: "alternate", hrefLang: "x-default", href: "/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "OnlineStore",
+          name: "باكري",
+          alternateName: "Backri",
+          inLanguage: "ar-AE",
+          description:
+            "محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات ترتيب للمسافرين في الإمارات ودول الخليج.",
+          url: "/ar",
+          currenciesAccepted: "AED",
+          areaServed: [
+            { "@type": "Country", name: "الإمارات العربية المتحدة" },
+            { "@type": "Country", name: "السعودية" },
+            { "@type": "Country", name: "قطر" },
+            { "@type": "Country", name: "الكويت" },
+            { "@type": "Country", name: "البحرين" },
+            { "@type": "Country", name: "عمان" },
+          ],
+        }),
+      },
     ],
   }),
 });
+
 
 function IndexAr() {
   const { data: products } = useSuspenseQuery(productsQueryOptions);
@@ -56,15 +95,16 @@ function IndexAr() {
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-28 sm:py-40">
           <div className="max-w-xl">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent-foreground">
-              تصميم في الإمارات
+              تصميم في الإمارات — توصيل إلى دول الخليج
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold leading-tight mt-4">
-              سافر بأناقة. واصل بثقة.
+              محافظ جوازات وحقائب سفر فاخرة للمسافر الخليجي
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              محافظ جوازات جلدية فاخرة وحقائب سفر ومنظمات للمسافر الخليجي العصري.
-              مصنوعة لترافقك لسنوات طويلة.
+              محافظ وأغطية جوازات جلدية، حقائب صعود للطائرة، شنط سفر ومنظمات ترتيب
+              للمسافرين في دبي وأبوظبي وجميع دول الخليج. مصنوعة لترافقك لسنوات طويلة.
             </p>
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#collection-ar"
@@ -148,6 +188,27 @@ function IndexAr() {
           </a>
         </div>
       </section>
+
+      {/* التوصيل والمناطق */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+        <h2 className="text-3xl sm:text-4xl font-bold">
+          إكسسوارات سفر تُوصَّل إلى الإمارات ودول الخليج
+        </h2>
+        <div className="mt-6 grid gap-8 md:grid-cols-2 text-muted-foreground leading-relaxed">
+          <p>
+            اطلب محفظة جواز سفر أو غطاء جواز أو حقيبة صعود للطائرة أو شنطة سفر
+            ونوصلها إلى أي مكان في الإمارات: دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة،
+            الفجيرة وأم القيوين. التوصيل مجاني داخل الإمارات للطلبات فوق 500 درهم،
+            وخلال 2 إلى 4 أيام لبقية الطلبات.
+          </p>
+          <p>
+            كما نشحن إلى السعودية وقطر والكويت والبحرين وعُمان. جميع الأسعار بالدرهم
+            الإماراتي، وكل قطعة بمقاس المقصورة لرحلاتك من مطارات دبي وأبوظبي، وتصل في
+            علبة أنيقة جاهزة للإهداء مع ضمان حرفية لمدة سنتين.
+          </p>
+        </div>
+      </section>
+
 
       {/* التذييل */}
       <footer className="border-t">

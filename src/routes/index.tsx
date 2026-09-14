@@ -18,23 +18,56 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Backri — Premium Travel Accessories & Luggage | UAE" },
+      { title: "Passport Wallets & Travel Luggage in Dubai, UAE | Backri" },
       {
         name: "description",
         content:
-          "Backri crafts premium leather passport wallets, luggage, bags and travel organisers. Designed in the UAE, delivered across the GCC. Free UAE shipping over AED 500.",
+          "Shop premium leather passport wallets, passport covers, cabin luggage, travel bags and packing organisers in Dubai. Free UAE delivery over AED 500, shipping across the GCC.",
       },
-      { property: "og:title", content: "Backri — Premium Travel Accessories & Luggage" },
+      { name: "keywords", content: "passport wallet UAE, passport cover Dubai, travel wallet Dubai, luggage Dubai, cabin luggage UAE, travel bags GCC, packing cubes Dubai" },
+      { property: "og:title", content: "Passport Wallets & Travel Luggage in Dubai, UAE | Backri" },
       {
         property: "og:description",
         content:
-          "Premium leather passport wallets, luggage and travel organisers. Designed in the UAE, delivered across the GCC.",
+          "Premium leather passport wallets, cabin luggage, travel bags and organisers. Free UAE delivery over AED 500, shipping across the GCC.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:locale", content: "en_AE" },
+      { property: "og:locale:alternate", content: "ar_AE" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "alternate", hrefLang: "en-AE", href: "/" },
+      { rel: "alternate", hrefLang: "ar-AE", href: "/ar" },
+      { rel: "alternate", hrefLang: "x-default", href: "/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "OnlineStore",
+          name: "Backri",
+          description:
+            "Premium leather passport wallets, cabin luggage, travel bags and packing organisers for travellers in the UAE and GCC.",
+          url: "/",
+          currenciesAccepted: "AED",
+          areaServed: [
+            { "@type": "Country", name: "United Arab Emirates" },
+            { "@type": "Country", name: "Saudi Arabia" },
+            { "@type": "Country", name: "Qatar" },
+            { "@type": "Country", name: "Kuwait" },
+            { "@type": "Country", name: "Bahrain" },
+            { "@type": "Country", name: "Oman" },
+          ],
+        }),
+      },
     ],
   }),
 });
+
 
 function Index() {
   const { data: products } = useSuspenseQuery(productsQueryOptions);
@@ -56,15 +89,17 @@ function Index() {
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-28 sm:py-40">
           <div className="max-w-xl">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-accent-foreground">
-              Designed in the UAE
+              Designed in the UAE — delivered across the GCC
             </p>
             <h1 className="font-display text-5xl sm:text-6xl leading-[1.05] mt-4">
-              Travel beautifully. Arrive composed.
+              Passport wallets &amp; travel luggage, made for the Gulf
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Premium leather passport wallets, luggage and organisers for the
-              modern Gulf traveller. Crafted to be carried for decades.
+              Premium leather passport wallets and covers, cabin luggage, travel
+              bags and packing organisers for travellers in Dubai, Abu Dhabi and
+              across the GCC. Crafted to be carried for decades.
             </p>
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#collection"
@@ -149,6 +184,28 @@ function Index() {
           </a>
         </div>
       </section>
+
+      {/* Delivery & areas served */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+        <h2 className="font-display text-4xl">
+          Travel accessories delivered across the UAE &amp; GCC
+        </h2>
+        <div className="mt-6 grid gap-8 md:grid-cols-2 text-muted-foreground leading-relaxed">
+          <p>
+            Order a passport wallet, passport cover, cabin suitcase or weekender
+            duffle and we deliver anywhere in the UAE — Dubai, Abu Dhabi, Sharjah,
+            Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. UAE delivery is free
+            on orders over AED 500, with 2–4 day courier delivery on everything else.
+          </p>
+          <p>
+            We also ship across the GCC to Saudi Arabia, Qatar, Kuwait, Bahrain and
+            Oman. All prices are in AED, every piece is cabin-friendly for DXB, AUH
+            and DWC departures, and each order arrives gift-ready in a signature box
+            with a 2-year craftsmanship guarantee.
+          </p>
+        </div>
+      </section>
+
 
       {/* Footer */}
       <footer className="border-t">
