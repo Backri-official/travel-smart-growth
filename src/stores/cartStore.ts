@@ -31,13 +31,14 @@ interface CartStore {
   removeItem: (variantId: string) => Promise<void>;
   clearCart: () => void;
   syncCart: () => Promise<void>;
-  getCheckoutUrl: () => string | null;
+  getCheckoutUrl: (locale?: "ar" | "en") => string | null;
 }
 
-function formatCheckoutUrl(checkoutUrl: string): string {
+function formatCheckoutUrl(checkoutUrl: string, locale?: "ar" | "en"): string {
   try {
     const url = new URL(checkoutUrl);
     url.searchParams.set("channel", "online_store");
+    if (locale) url.searchParams.set("locale", locale);
     return url.toString();
   } catch {
     return checkoutUrl;
