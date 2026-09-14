@@ -112,8 +112,22 @@ export const STOREFRONT_QUERY = `
   }
 `;
 
+export const STOREFRONT_QUERY_AR = `
+  query GetProductsAr($first: Int!, $query: String) @inContext(language: AR, country: AE) {
+    products(first: $first, query: $query) {
+      edges { node { ${PRODUCT_FRAGMENT} } }
+    }
+  }
+`;
+
 export const PRODUCT_BY_HANDLE_QUERY = `
   query GetProductByHandle($handle: String!) {
+    product(handle: $handle) { ${PRODUCT_FRAGMENT} }
+  }
+`;
+
+export const PRODUCT_BY_HANDLE_QUERY_AR = `
+  query GetProductByHandleAr($handle: String!) @inContext(language: AR, country: AE) {
     product(handle: $handle) { ${PRODUCT_FRAGMENT} }
   }
 `;
