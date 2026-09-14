@@ -185,6 +185,28 @@ function Index() {
         </div>
       </section>
 
+      {/* Delivery & areas served */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+        <h2 className="font-display text-4xl">
+          Travel accessories delivered across the UAE &amp; GCC
+        </h2>
+        <div className="mt-6 grid gap-8 md:grid-cols-2 text-muted-foreground leading-relaxed">
+          <p>
+            Order a passport wallet, passport cover, cabin suitcase or weekender
+            duffle and we deliver anywhere in the UAE — Dubai, Abu Dhabi, Sharjah,
+            Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. UAE delivery is free
+            on orders over AED 500, with 2–4 day courier delivery on everything else.
+          </p>
+          <p>
+            We also ship across the GCC to Saudi Arabia, Qatar, Kuwait, Bahrain and
+            Oman. All prices are in AED, every piece is cabin-friendly for DXB, AUH
+            and DWC departures, and each order arrives gift-ready in a signature box
+            with a 2-year craftsmanship guarantee.
+          </p>
+        </div>
+      </section>
+
+
       {/* Footer */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start justify-between gap-8">
