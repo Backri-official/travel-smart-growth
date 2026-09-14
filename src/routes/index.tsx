@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { enPosts } from "@/content/posts";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { Plane, ShieldCheck, Truck, Gift } from "lucide-react";
 import heroImage from "@/assets/hero.jpg";
