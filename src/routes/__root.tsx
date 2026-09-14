@@ -168,7 +168,7 @@ function RootComponent() {
               <img
                 src={logoAsset.url}
                 alt="Backri logo"
-                className="h-7 w-auto sm:h-9"
+                className="mt-1 h-7 w-auto sm:mt-0 sm:h-9"
                 width={36}
                 height={36}
               />
