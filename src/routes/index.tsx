@@ -207,6 +207,39 @@ function Index() {
       </section>
 
 
+      {/* Journal */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20">
+        <div className="rounded-lg bg-secondary p-8 sm:p-12">
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">Backri Journal</p>
+          <h2 className="font-display text-3xl sm:text-4xl mt-3">
+            Travel tips for UAE &amp; GCC travellers
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
+            Cabin baggage rules from Dubai and Abu Dhabi, document checklists for UAE
+            residents, summer packing lists and carry-on only guides.
+          </p>
+          <ul className="mt-6 space-y-2">
+            {enPosts.slice(0, 3).map((post) => (
+              <li key={post.slug}>
+                <Link
+                  to="/journal/$slug"
+                  params={{ slug: post.slug }}
+                  className="text-sm hover:text-accent transition-colors underline underline-offset-4 decoration-accent/40"
+                >
+                  {post.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/journal"
+            className="mt-8 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            Read the journal
+          </Link>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start justify-between gap-8">

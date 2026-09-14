@@ -210,6 +210,39 @@ function IndexAr() {
       </section>
 
 
+      {/* المجلة */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20">
+        <div className="rounded-lg bg-secondary p-8 sm:p-12">
+          <p className="text-xs tracking-widest text-accent">مجلة باكري</p>
+          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+            نصائح سفر للمسافرين في الإمارات ودول الخليج
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-2xl leading-loose">
+            قواعد حقيبة المقصورة من دبي وأبوظبي، قائمة أوراق السفر للمقيمين في الإمارات،
+            قوائم حزم الصيف، والسفر بحقيبة يد فقط.
+          </p>
+          <ul className="mt-6 space-y-2">
+            {arPosts.slice(0, 3).map((post) => (
+              <li key={post.slug}>
+                <Link
+                  to="/ar/journal/$slug"
+                  params={{ slug: post.slug }}
+                  className="text-sm hover:text-accent transition-colors underline underline-offset-4 decoration-accent/40"
+                >
+                  {post.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/ar/journal"
+            className="mt-8 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            اقرأ المجلة
+          </Link>
+        </div>
+      </section>
+
       {/* التذييل */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start justify-between gap-8">
