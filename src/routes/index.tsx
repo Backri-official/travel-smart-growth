@@ -89,15 +89,17 @@ function Index() {
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-28 sm:py-40">
           <div className="max-w-xl">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-accent-foreground">
-              Designed in the UAE
+              Designed in the UAE — delivered across the GCC
             </p>
             <h1 className="font-display text-5xl sm:text-6xl leading-[1.05] mt-4">
-              Travel beautifully. Arrive composed.
+              Passport wallets &amp; travel luggage, made for the Gulf
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Premium leather passport wallets, luggage and organisers for the
-              modern Gulf traveller. Crafted to be carried for decades.
+              Premium leather passport wallets and covers, cabin luggage, travel
+              bags and packing organisers for travellers in Dubai, Abu Dhabi and
+              across the GCC. Crafted to be carried for decades.
             </p>
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#collection"
