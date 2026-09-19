@@ -12,3 +12,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /orders
+Disallow: /admin
+
+Sitemap: https://travel-smart-growth.lovable.app/sitemap.xml

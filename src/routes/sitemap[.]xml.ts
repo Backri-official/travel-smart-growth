@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, type AnyRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
 import {
   isSitemapRouteIncluded,
@@ -37,8 +37,11 @@ export const Route = createFileRoute("/sitemap.xml")({
         const router = await getRouterInstance();
         const entries: SitemapEntry[] = sitemapStaticPaths(router).map((path) => ({ path }));
 
+        const routeById = (id: string) =>
+          (router.routesById as Record<string, AnyRoute | undefined>)[id];
+
         const addDynamic = (routeId: string, to: string, slugs: string[], key: string) => {
-          if (!isSitemapRouteIncluded(router.routesById[routeId])) return;
+          if (!isSitemapRouteIncluded(routeById(routeId))) return;
           for (const slug of slugs) {
             const location = router.buildLocation({
               to,

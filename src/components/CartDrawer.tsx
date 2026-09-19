@@ -172,6 +172,8 @@ export const CartDrawer = () => {
                   onClick={handleCheckout}
                   className="w-full"
                   size="lg"
+                  aria-label={t.checkout}
+                  aria-busy={isLoading || isSyncing}
                   disabled={items.length === 0 || isLoading || isSyncing}
                 >
                   {isLoading || isSyncing ? (

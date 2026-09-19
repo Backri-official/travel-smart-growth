@@ -274,6 +274,8 @@ function ProductPage() {
             size="lg"
             className="mt-8 w-full"
             onClick={handleAddToCart}
+            aria-label={isLoading ? "Adding to bag" : "Add to Bag"}
+            aria-busy={isLoading}
             disabled={isLoading || !selectedVariant?.availableForSale}
           >
             {isLoading ? (
