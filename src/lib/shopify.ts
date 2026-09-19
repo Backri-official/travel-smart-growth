@@ -120,6 +120,15 @@ export const STOREFRONT_QUERY_AR = `
   }
 `;
 
+export const PRODUCT_HANDLES_QUERY = `
+  query GetProductHandles($first: Int!, $after: String) {
+    products(first: $first, after: $after) {
+      edges { node { handle } }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+`;
+
 export const PRODUCT_BY_HANDLE_QUERY = `
   query GetProductByHandle($handle: String!) {
     product(handle: $handle) { ${PRODUCT_FRAGMENT} }

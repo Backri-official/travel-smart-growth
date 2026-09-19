@@ -6,6 +6,7 @@ import { getShopifyOrders, type OrdersResult } from "@/lib/orders.functions";
 import { formatPrice } from "@/lib/shopify";
 
 export const Route = createFileRoute("/orders")({
+  staticData: { sitemap: false },
   component: OrdersDashboard,
   head: () => ({
     meta: [

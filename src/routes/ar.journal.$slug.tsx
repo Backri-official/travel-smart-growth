@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { arPosts, getPost } from "@/content/posts";
 
 export const Route = createFileRoute("/ar/journal/$slug")({
+  staticData: { sitemap: true },
   loader: ({ params }) => {
     const post = getPost(arPosts, params.slug);
     if (!post) throw notFound();

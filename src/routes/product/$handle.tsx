@@ -36,27 +36,107 @@ const relatedQueryOptions = (handle: string) =>
     },
   });
 
+const SITE_URL = "https://travel-smart-growth.lovable.app";
+
+function shareImage(url: string | undefined): string | undefined {
+  if (!url || !url.startsWith("https://")) return undefined;
+  const separator = url.includes("?") ? "&" : "?";
+  return `${url}${separator}width=1200&height=630&crop=center`;
+}
+
 export const Route = createFileRoute("/product/$handle")({
+  staticData: { sitemap: true },
   loader: ({ params, context }) =>
     context.queryClient.ensureQueryData(productQueryOptions(params.handle)),
   component: ProductPage,
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.handle.replace(/-/g, " ")} — Backri` },
-      {
-        name: "description",
-        content:
-          "Premium travel accessories by Backri. Full-grain leather goods and luggage, shipped across the UAE and GCC.",
-      },
-      { property: "og:title", content: "Backri — Premium Travel Accessories" },
-      {
-        property: "og:description",
-        content: "Premium leather travel goods, shipped across the UAE and GCC.",
-      },
-      { property: "og:type", content: "product" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: ({ params, loaderData }) => {
+    const url = `${SITE_URL}/product/${params.handle}`;
+    const node = loaderData?.node;
+
+    if (!node) {
+      return {
+        meta: [
+          { title: "Product — Backri" },
+          {
+            name: "description",
+            content:
+              "Premium leather travel accessories by Backri, shipped across the UAE and GCC.",
+          },
+          { property: "og:type", content: "product" },
+          { property: "og:url", content: url },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+        links: [{ rel: "canonical", href: url }],
+      };
+    }
+
+    const variant = node.variants.edges[0]?.node;
+    const price = variant?.price;
+    const category = node.productType ? `${node.productType} · ` : "";
+    const summary =
+      node.description?.trim().slice(0, 155) ||
+      `${node.title} by Backri — premium travel goods delivered across the UAE and GCC.`;
+    const title = `${node.title} | Backri ${node.productType || "Travel Accessories"} UAE`;
+    const image = shareImage(node.images.edges[0]?.node.url);
+
+    return {
+      meta: [
+        { title },
+        { name: "description", content: `${category}${summary}` },
+        { property: "og:title", content: title },
+        { property: "og:description", content: summary },
+        { property: "og:type", content: "product" },
+        { property: "og:url", content: url },
+        { property: "og:locale", content: "en_AE" },
+        { name: "twitter:card", content: "summary_large_image" },
+        ...(image
+          ? [
+              { property: "og:image", content: image },
+              { name: "twitter:image", content: image },
+            ]
+          : []),
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: node.title,
+            description: summary,
+            sku: variant?.id,
+            category: node.productType || undefined,
+            image: node.images.edges.map((edge) => edge.node.url),
+            brand: { "@type": "Brand", name: "Backri" },
+            offers: price
+              ? {
+                  "@type": "Offer",
+                  url,
+                  price: price.amount,
+                  priceCurrency: price.currencyCode,
+                  availability: variant?.availableForSale
+                    ? "https://schema.org/InStock"
+                    : "https://schema.org/OutOfStock",
+                  areaServed: "AE",
+                }
+              : undefined,
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+              { "@type": "ListItem", position: 2, name: node.title, item: url },
+            ],
+          }),
+        },
+      ],
+    };
+  },
 });
 
 function ProductPage() {
@@ -194,6 +274,8 @@ function ProductPage() {
             size="lg"
             className="mt-8 w-full"
             onClick={handleAddToCart}
+            aria-label={isLoading ? "Adding to bag" : "Add to Bag"}
+            aria-busy={isLoading}
             disabled={isLoading || !selectedVariant?.availableForSale}
           >
             {isLoading ? (

@@ -15,6 +15,7 @@ const productsQueryOptions = queryOptions({
 });
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions),
   component: Index,
   head: () => ({

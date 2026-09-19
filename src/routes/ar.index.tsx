@@ -15,6 +15,7 @@ const productsQueryOptions = queryOptions({
 });
 
 export const Route = createFileRoute("/ar/")({
+  staticData: { sitemap: true },
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions),
   component: IndexAr,
   head: () => ({
