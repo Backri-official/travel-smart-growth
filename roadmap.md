@@ -12,3 +12,5 @@
 - [x] Theme validation checklist — `bun run validate-theme` (scripts/validate-theme.mjs): required files, Liquid syntax, asset references, Arabic/RTL + locale parity, theme settings. Current: 0 fail, 1 warn, 59 pass
 - [x] SEO fixes: per-product titles/descriptions/social previews + Product & Breadcrumb structured data, accessible names on loading buttons, /sitemap.xml (pages, journal posts, live products) referenced from robots.txt
 - [ ] Google Search Console not connected — optional, needed for indexing reports and sitemap submission
+- [ ] Agent integrations (MCP) — protected with sign-in (OAuth), user chose the protected option
+- [ ] Convert the site design to Shopify Liquid as sections + snippets + assets (rework the existing theme so every home/product block is a section with matching snippets)
