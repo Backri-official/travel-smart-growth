@@ -38,7 +38,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = sitemapStaticPaths(router).map((path) => ({ path }));
 
         const routeById = (id: string) =>
-          (router.routesById as Record<string, AnyRoute | undefined>)[id];
+          (router.routesById as unknown as Record<string, AnyRoute | undefined>)[id];
 
         const addDynamic = (routeId: string, to: string, slugs: string[], key: string) => {
           if (!isSitemapRouteIncluded(routeById(routeId))) return;
