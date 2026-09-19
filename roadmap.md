@@ -12,5 +12,5 @@
 - [x] Theme validation checklist — `bun run validate-theme` (scripts/validate-theme.mjs): required files, Liquid syntax, asset references, Arabic/RTL + locale parity, theme settings. Current: 0 fail, 1 warn, 59 pass
 - [x] SEO fixes: per-product titles/descriptions/social previews + Product & Breadcrumb structured data, accessible names on loading buttons, /sitemap.xml (pages, journal posts, live products) referenced from robots.txt
 - [ ] Google Search Console not connected — optional, needed for indexing reports and sitemap submission
-- [ ] Agent integration (MCP): sign-in + OAuth-protected MCP server exposing Backri shop/journal tools
-- [ ] Convert the current site design to Shopify Liquid sections + snippets + assets (extend the existing theme package)
+- [x] Agent integration (MCP) at /mcp, OAuth-protected: sign-in page at /login (email + Google), consent page at /.lovable/oauth/consent, 4 tools (list_products, get_product, list_journal_posts, get_journal_post)
+- [x] Theme v4 — home page now matches the live site: full-bleed hero with overlay, icon value-prop row, offer band, Gulf shipping columns, journal promo; new sections offer-band/gulf-shipping/journal-promo + snippets/icon.liquid
