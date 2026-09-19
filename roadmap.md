@@ -9,3 +9,4 @@
 - [x] Arabic checkout opens Shopify checkout in Arabic (locale=ar on the checkout link)
 - [ ] All 3 products in the live store are out of stock — nothing can be bought until stock is set
 - [ ] Ad kit links still placeholders — swap for the live URLs
+- [x] Theme validation checklist — `bun run validate-theme` (scripts/validate-theme.mjs): required files, Liquid syntax, asset references, Arabic/RTL + locale parity, theme settings. Current: 0 fail, 1 warn, 59 pass
