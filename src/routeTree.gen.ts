@@ -11,12 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as McpRouteImport } from './routes/mcp'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as ArIndexRouteImport } from './routes/ar.index'
 import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as ProductHandleRouteImport } from './routes/product/$handle'
+import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as ArJournalIndexRouteImport } from './routes/ar.journal.index'
 import { Route as ArJournalSlugRouteImport } from './routes/ar.journal.$slug'
 
@@ -30,6 +34,16 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrdersRoute = OrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -40,6 +54,12 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ArIndexRoute = ArIndexRouteImport.update({
   id: '/ar/',
   path: '/ar/',
@@ -60,6 +80,11 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
+  id: '/.lovable/oauth/consent',
+  path: '/.lovable/oauth/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArJournalIndexRoute = ArJournalIndexRouteImport.update({
   id: '/ar/journal/',
   path: '/ar/journal/',
@@ -74,24 +99,32 @@ const ArJournalSlugRoute = ArJournalSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/login': typeof LoginRoute
+  '/mcp': typeof McpRoute
   '/orders': typeof OrdersRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/ar/': typeof ArIndexRoute
   '/journal/': typeof JournalIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/ar/journal/$slug': typeof ArJournalSlugRoute
   '/ar/journal/': typeof ArJournalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/login': typeof LoginRoute
+  '/mcp': typeof McpRoute
   '/orders': typeof OrdersRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/ar': typeof ArIndexRoute
   '/journal': typeof JournalIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/ar/journal/$slug': typeof ArJournalSlugRoute
   '/ar/journal': typeof ArJournalIndexRoute
 }
@@ -99,12 +132,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/login': typeof LoginRoute
+  '/mcp': typeof McpRoute
   '/orders': typeof OrdersRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/ar/': typeof ArIndexRoute
   '/journal/': typeof JournalIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/ar/journal/$slug': typeof ArJournalSlugRoute
   '/ar/journal/': typeof ArJournalIndexRoute
 }
@@ -113,36 +150,48 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/login'
+    | '/mcp'
     | '/orders'
     | '/sitemap.xml'
+    | '/.well-known/oauth-protected-resource'
     | '/journal/$slug'
     | '/product/$handle'
     | '/ar/'
     | '/journal/'
+    | '/.lovable/oauth/consent'
     | '/ar/journal/$slug'
     | '/ar/journal/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/admin'
+    | '/login'
+    | '/mcp'
     | '/orders'
     | '/sitemap.xml'
+    | '/.well-known/oauth-protected-resource'
     | '/journal/$slug'
     | '/product/$handle'
     | '/ar'
     | '/journal'
+    | '/.lovable/oauth/consent'
     | '/ar/journal/$slug'
     | '/ar/journal'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/login'
+    | '/mcp'
     | '/orders'
     | '/sitemap.xml'
+    | '/.well-known/oauth-protected-resource'
     | '/journal/$slug'
     | '/product/$handle'
     | '/ar/'
     | '/journal/'
+    | '/.lovable/oauth/consent'
     | '/ar/journal/$slug'
     | '/ar/journal/'
   fileRoutesById: FileRoutesById
@@ -150,12 +199,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  LoginRoute: typeof LoginRoute
+  McpRoute: typeof McpRoute
   OrdersRoute: typeof OrdersRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   JournalSlugRoute: typeof JournalSlugRoute
   ProductHandleRoute: typeof ProductHandleRoute
   ArIndexRoute: typeof ArIndexRoute
   JournalIndexRoute: typeof JournalIndexRoute
+  DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   ArJournalSlugRoute: typeof ArJournalSlugRoute
   ArJournalIndexRoute: typeof ArJournalIndexRoute
 }
@@ -176,6 +229,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/orders': {
       id: '/orders'
       path: '/orders'
@@ -188,6 +255,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ar/': {
@@ -218,6 +292,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/.lovable/oauth/consent': {
+      id: '/.lovable/oauth/consent'
+      path: '/.lovable/oauth/consent'
+      fullPath: '/.lovable/oauth/consent'
+      preLoaderRoute: typeof DotlovableOauthConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ar/journal/': {
       id: '/ar/journal/'
       path: '/ar/journal'
@@ -238,12 +319,17 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  LoginRoute: LoginRoute,
+  McpRoute: McpRoute,
   OrdersRoute: OrdersRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  Char91DotwellKnownChar93OauthProtectedResourceRoute:
+    Char91DotwellKnownChar93OauthProtectedResourceRoute,
   JournalSlugRoute: JournalSlugRoute,
   ProductHandleRoute: ProductHandleRoute,
   ArIndexRoute: ArIndexRoute,
   JournalIndexRoute: JournalIndexRoute,
+  DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   ArJournalSlugRoute: ArJournalSlugRoute,
   ArJournalIndexRoute: ArJournalIndexRoute,
 }

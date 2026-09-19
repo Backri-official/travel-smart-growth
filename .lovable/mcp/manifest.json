@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "sdk_version": "2.3.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://cenytmxpfpzhjtbdyzao.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "growth-architect-ai",
+      "version": "0.1.0",
+      "title": "Growth Architect AI"
+    },
+    "tools": [
+      {
+        "name": "list_products",
+        "title": "List Backri products",
+        "description": "List products in the Backri store with AED prices, stock status and images. Optionally filter by a search term and choose English or Arabic product text.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "search": {
+              "description": "Optional keyword to filter products, e.g. 'passport' or 'luggage'.",
+              "type": "string",
+              "minLength": 1
+            },
+            "language": {
+              "default": "en",
+              "description": "Language for product titles and descriptions.",
+              "type": "string",
+              "enum": [
+                "en",
+                "ar"
+              ]
+            },
+            "limit": {
+              "default": 20,
+              "description": "Maximum products to return.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_product",
+        "title": "Get a Backri product",
+        "description": "Get one Backri product by its handle, including AED price, variants, stock status, images and its page URL.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "handle": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Product handle, as returned by list_products (the last part of the product URL)."
+            },
+            "language": {
+              "default": "en",
+              "description": "Language for the product title and description.",
+              "type": "string",
+              "enum": [
+                "en",
+                "ar"
+              ]
+            }
+          },
+          "required": [
+            "handle"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_journal_posts",
+        "title": "List Backri journal posts",
+        "description": "List the Backri journal travel guides for UAE and GCC travellers, in English or Arabic, with their titles, summaries and URLs.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "language": {
+              "default": "en",
+              "description": "Language of the guides to list.",
+              "type": "string",
+              "enum": [
+                "en",
+                "ar"
+              ]
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_journal_post",
+        "title": "Read a Backri journal post",
+        "description": "Read the full text of one Backri journal travel guide by its slug, in English or Arabic.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Post slug, as returned by list_journal_posts."
+            },
+            "language": {
+              "default": "en",
+              "description": "Language of the guide.",
+              "type": "string",
+              "enum": [
+                "en",
+                "ar"
+              ]
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
