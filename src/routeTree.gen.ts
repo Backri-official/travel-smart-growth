@@ -20,6 +20,7 @@ import { Route as ArIndexRouteImport } from './routes/ar.index'
 import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as ProductHandleRouteImport } from './routes/product/$handle'
+import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as ArJournalIndexRouteImport } from './routes/ar.journal.index'
 import { Route as ArJournalSlugRouteImport } from './routes/ar.journal.$slug'
 
@@ -79,6 +80,11 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
+  id: '/.lovable/oauth/consent',
+  path: '/.lovable/oauth/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArJournalIndexRoute = ArJournalIndexRouteImport.update({
   id: '/ar/journal/',
   path: '/ar/journal/',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/product/$handle': typeof ProductHandleRoute
   '/ar/': typeof ArIndexRoute
   '/journal/': typeof JournalIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/ar/journal/$slug': typeof ArJournalSlugRoute
   '/ar/journal/': typeof ArJournalIndexRoute
 }
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/product/$handle': typeof ProductHandleRoute
   '/ar': typeof ArIndexRoute
   '/journal': typeof JournalIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/ar/journal/$slug': typeof ArJournalSlugRoute
   '/ar/journal': typeof ArJournalIndexRoute
 }
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/product/$handle': typeof ProductHandleRoute
   '/ar/': typeof ArIndexRoute
   '/journal/': typeof JournalIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/ar/journal/$slug': typeof ArJournalSlugRoute
   '/ar/journal/': typeof ArJournalIndexRoute
 }
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/product/$handle'
     | '/ar/'
     | '/journal/'
+    | '/.lovable/oauth/consent'
     | '/ar/journal/$slug'
     | '/ar/journal/'
   fileRoutesByTo: FileRoutesByTo
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/product/$handle'
     | '/ar'
     | '/journal'
+    | '/.lovable/oauth/consent'
     | '/ar/journal/$slug'
     | '/ar/journal'
   id:
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/product/$handle'
     | '/ar/'
     | '/journal/'
+    | '/.lovable/oauth/consent'
     | '/ar/journal/$slug'
     | '/ar/journal/'
   fileRoutesById: FileRoutesById
@@ -196,6 +208,7 @@ export interface RootRouteChildren {
   ProductHandleRoute: typeof ProductHandleRoute
   ArIndexRoute: typeof ArIndexRoute
   JournalIndexRoute: typeof JournalIndexRoute
+  DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   ArJournalSlugRoute: typeof ArJournalSlugRoute
   ArJournalIndexRoute: typeof ArJournalIndexRoute
 }
@@ -279,6 +292,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/.lovable/oauth/consent': {
+      id: '/.lovable/oauth/consent'
+      path: '/.lovable/oauth/consent'
+      fullPath: '/.lovable/oauth/consent'
+      preLoaderRoute: typeof DotlovableOauthConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ar/journal/': {
       id: '/ar/journal/'
       path: '/ar/journal'
@@ -309,6 +329,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductHandleRoute: ProductHandleRoute,
   ArIndexRoute: ArIndexRoute,
   JournalIndexRoute: JournalIndexRoute,
+  DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   ArJournalSlugRoute: ArJournalSlugRoute,
   ArJournalIndexRoute: ArJournalIndexRoute,
 }
