@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { arPosts } from "@/content/posts";
 
 export const Route = createFileRoute("/ar/journal/")({
+  staticData: { sitemap: true },
   component: ArJournalIndex,
   head: () => ({
     meta: [

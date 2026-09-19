@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { enPosts } from "@/content/posts";
 
 export const Route = createFileRoute("/journal/")({
+  staticData: { sitemap: true },
   component: JournalIndex,
   head: () => ({
     meta: [

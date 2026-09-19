@@ -14,6 +14,7 @@ import {
 import { formatPrice } from "@/lib/shopify";
 
 export const Route = createFileRoute("/admin")({
+  staticData: { sitemap: false },
   component: AdminProducts,
   head: () => ({
     meta: [
