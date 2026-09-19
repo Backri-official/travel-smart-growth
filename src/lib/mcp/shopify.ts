@@ -80,7 +80,7 @@ async function storefront<T>(
       "X-Shopify-Storefront-Access-Token": STOREFRONT_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
-    signal,
+    signal: signal ?? null,
   });
 
   const text = await response.text();
@@ -100,7 +100,11 @@ function localeVariables(language: "EN" | "AR") {
 }
 
 export async function fetchProducts(
-  { first, query, language }: { first: number; query?: string; language: "EN" | "AR" },
+  {
+    first,
+    query,
+    language,
+  }: { first: number; query?: string | undefined; language: "EN" | "AR" },
   signal?: AbortSignal,
 ): Promise<ShopifyProductNode[]> {
   const data = await storefront<{ products: { edges: Array<{ node: ShopifyProductNode }> } }>(
