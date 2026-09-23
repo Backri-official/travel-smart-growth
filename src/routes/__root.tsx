@@ -166,18 +166,24 @@ function RootComponent() {
               )}
             </div>
             <Link
-              to="/"
+              to={isArabic ? "/ar" : "/"}
               className="absolute left-1/2 top-1/2 flex min-w-0 -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0.5 sm:static sm:translate-x-0 sm:translate-y-0 sm:flex-row sm:gap-2"
-              aria-label="Backri home"
+              aria-label={isArabic ? "باكري — الرئيسية" : "Backri home"}
             >
               <img
                 src={logoAsset.url}
-                alt="Backri logo"
+                alt={isArabic ? "شعار باكري" : "Backri logo"}
                 className="mt-1 h-7 w-auto sm:mt-0 sm:h-9"
                 width={36}
                 height={36}
               />
-              <span className="font-display text-lg tracking-wide sm:text-2xl">Backri</span>
+              {isArabic ? (
+                <span lang="ar" className="font-arabic text-xl font-semibold sm:text-2xl">
+                  بَكْرِي
+                </span>
+              ) : (
+                <span className="font-display text-lg tracking-wide sm:text-2xl">Backri</span>
+              )}
             </Link>
             <nav className="flex shrink-0 items-center justify-end gap-1 sm:gap-2">
               {!isArabic && (
